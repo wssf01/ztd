@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.ztd.mapper.TWaybillInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bike.ztd.entity.TWaybillInfo">
+        <id column="pk_id" property="pkId" />
+        <result column="waybill_type" property="waybillType" />
+        <result column="waybill_local" property="waybillLocal" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="photo" property="photo" />
+        <result column="waybill_id" property="waybillId" />
+        <result column="car_number" property="carNumber" />
+        <result column="car_type" property="carType" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pk_id AS pkId, waybill_type AS waybillType, waybill_local AS waybillLocal, longitude, latitude, photo, waybill_id AS waybillId, car_number AS carNumber, car_type AS carType, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <insert id="insertBatch">
+        INSERT INTO t_waybill_info ( pk_id AS pkId, waybill_type AS waybillType, waybill_local AS waybillLocal, longitude, latitude, photo, waybill_id AS waybillId, car_number AS carNumber, car_type AS carType, create_time AS createTime, update_time AS updateTime)
+        VALUES
+        <foreach item="item" index="index" collection="list" open="" separator="," close="">
+            (#{item.pkId}, #{item.waybillType}, #{item.waybillLocal},
+            #{item.longitude}, #{item.latitude},#{item.photo},
+            #{item.waybillId}, #{item.carNumber}, #{item.carType}, #{item.createTime}:: timestamp, #{item.updateTime}:: timestamp)
+        </foreach>
+    </insert>
+</mapper>

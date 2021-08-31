@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.ztd.mapper.TUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bike.ztd.entity.TUser">
+        <id column="pk_id" property="pkId" />
+        <result column="login_name" property="loginName" />
+        <result column="password" property="password" />
+        <result column="age" property="age" />
+        <result column="gender" property="gender" />
+        <result column="email" property="email" />
+        <result column="phone" property="phone" />
+        <result column="identity_card" property="identityCard" />
+        <result column="avatar" property="avatar" />
+        <result column="user_name" property="userName" />
+        <result column="user_status" property="userStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pk_id AS pkId, login_name AS loginName, password, age, gender, email, phone, identity_card AS identityCard, avatar, user_name AS userName, user_status AS userStatus, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="list" resultType="com.bike.ztd.entity.TUser">
+        select
+        pk_id AS pkId, login_name AS loginName, password, age, gender, email, phone, identity_card AS identityCard, avatar, user_name AS userName, user_status AS userStatus, create_time AS createTime, update_time AS updateTime
+        from
+        t_user
+        <where>
+            user_status  <![CDATA[ <> ]]> 'DELETE'
+            <if test="searchValue!=null and searchValue!=''">
+                and (user_name like '%'||#{searchValue}||'%'
+                or phone like '%'||#{searchValue}||'%')
+            </if>
+        </where>
+    </select>
+</mapper>

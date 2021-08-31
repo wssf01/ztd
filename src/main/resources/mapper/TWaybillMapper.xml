@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.ztd.mapper.TWaybillMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bike.ztd.entity.TWaybill">
+        <id column="pk_id" property="pkId" />
+        <result column="complete_at" property="completeAt" />
+        <result column="waybill_status" property="waybillStatus" />
+        <result column="waybill_local" property="waybillLocal" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="number_collect" property="numberCollect" />
+        <result column="remarks" property="remarks" />
+        <result column="number_disboard" property="numberDisboard" />
+        <result column="user_id" property="userId" />
+        <result column="local_complete" property="localComplete" />
+        <result column="longitude_complete" property="longitudeComplete" />
+        <result column="latitude_complete" property="latitudeComplete" />
+        <result column="city" property="city" />
+        <result column="city_complete" property="cityComplete" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pk_id AS pkId, complete_at AS completeAt, waybill_status AS waybillStatus, waybill_local AS waybillLocal, longitude, latitude, number_collect AS numberCollect, remarks, number_disboard AS numberDisboard, user_id AS userId, local_complete AS localComplete, longitude_complete AS longitudeComplete, latitude_complete AS latitudeComplete, city, city_complete AS cityComplete, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+
+    <select id="pageList" resultType="com.bike.ztd.entity.TWaybill">
+        select
+        w.pk_id AS pkId,
+        w.user_id as userId,
+        w.complete_at AS completeAt,
+        w.create_time AS createTime
+        w.update_time AS updateTime
+        w.waybill_status AS waybillStatus,
+        w.waybill_local AS waybillLocal,
+        w.longitude,
+        w.latitude,
+        w.number_collect AS numberCollect,
+        w.remarks,
+        w.number_disboard AS numberDisboard,
+        w.local_complete as localComplete,
+        w.longitude_complete as longitudeComplete,
+        w.latitude_complete as latitudeComplete,
+        w.city,
+        w.city_complete as cityComplete
+        from t_waybill w
+        left join t_user u on u.pk_id=w.user_id
+        <where>
+            w.status <![CDATA[ <> ]]> 'DELETE'
+            <if test="userId!=null and userId!=''">
+                and w.user_id = #{userId}
+            </if>
+            <if test="userPhone!=null and userPhone!=''">
+                and u.phone = #{userPhone}
+            </if>
+            <if test="waybillLocal!=null and waybillLocal!=''">
+                and w.city = #{waybillLocal}
+            </if>
+            <if test=" createTime != null">
+                and w.create_time <![CDATA[ >= ]]> #{startAt}
+            </if>
+            <if test=" endAt != null">
+                and w.create_time <![CDATA[ < ]]> #{endAt}
+            </if>
+        </where>
+        order by w.create_time desc
+    </select>
+
+    <select id="listExport" resultType="com.bike.ztd.entity.TWaybill">
+        select
+        w.pk_id AS pkId,
+        w.user_id as userId,
+        w.complete_at AS completeAt,
+        w.create_time AS createTime
+        w.update_time AS updateTime
+        w.waybill_status AS waybillStatus,
+        w.waybill_local AS waybillLocal,
+        w.longitude,
+        w.latitude,
+        w.number_collect AS numberCollect,
+        w.remarks,
+        w.number_disboard AS numberDisboard,
+        w.local_complete as localComplete,
+        w.longitude_complete as longitudeComplete,
+        w.latitude_complete as latitudeComplete,
+        w.city,
+        w.city_complete as cityComplete
+        from t_waybill w
+        left join t_user u on u.pk_id=w.user_id
+        <where>
+            w.status <![CDATA[ <> ]]> 'DELETE'
+            <if test="userId!=null and userId!=''">
+                and w.user_id = #{userId}
+            </if>
+            <if test="userPhone!=null and userPhone!=''">
+                and u.phone = #{userPhone}
+            </if>
+            <if test="waybillLocal!=null and waybillLocal!=''">
+                and w.city = #{waybillLocal}
+            </if>
+            <if test=" startAt != null">
+                and w.create_time <![CDATA[ >= ]]> #{startAt}
+            </if>
+            <if test=" endAt != null">
+                and w.create_time <![CDATA[ < ]]> #{endAt}
+            </if>
+        </where>
+        order by w.create_time desc
+    </select>
+
+</mapper>

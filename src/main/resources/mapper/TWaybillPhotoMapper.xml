@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.ztd.mapper.TWaybillPhotoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bike.ztd.entity.TWaybillPhoto">
+        <id column="pk_id" property="pkId" />
+        <result column="waybill_type" property="waybillType" />
+        <result column="waybill_local" property="waybillLocal" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="photo" property="photo" />
+        <result column="waybill_id" property="waybillId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pk_id AS pkId, waybill_type AS waybillType, waybill_local AS waybillLocal, longitude, latitude, photo, waybill_id AS waybillId, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+</mapper>
