@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 @ApiModel("PhotoInfoVO")
 public class PhotoInfoVO {
     @ApiModelProperty("装车/卸车")
-    private WaybillInfoEnum type;
+    private WaybillInfoEnum waybillType;
     @ApiModelProperty("照片路径")
     private String photo;
     @ApiModelProperty("地点")
-    private String local;
+    private String waybillLocal;
     @ApiModelProperty("经度")
     private BigDecimal longitude;
     @ApiModelProperty("纬度")

@@ -12,7 +12,7 @@ public class UserVO {
      * 主键ID
      */
     @ApiModelProperty("用户id")
-    private String id;
+    private String pkId;
     /**
      * 登录名
      */
@@ -45,5 +45,5 @@ public class UserVO {
     @ApiModelProperty("用户姓名")
     private String userName;
     @ApiModelProperty("用户状态")
-    private UserStatus status;
+    private UserStatus userStatus;
 }

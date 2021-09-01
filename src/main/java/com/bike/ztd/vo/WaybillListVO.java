@@ -11,15 +11,15 @@ import java.util.List;
 @ApiModel("WaybillListVO")
 public class WaybillListVO {
     @ApiModelProperty("运单ID")
-    private String id;
+    private String pkId;
     @ApiModelProperty("用户id")
     private String userId;
     @ApiModelProperty("用户手机号")
     private String userPhone;
     @ApiModelProperty("创建时间")
-    private Date createdAt;
+    private Date createTime;
     @ApiModelProperty("城市")
-    private String local;
+    private String waybillLocal;
     @ApiModelProperty("收车总数")
     private Integer numberCollect;
     @ApiModelProperty("卸车总数")

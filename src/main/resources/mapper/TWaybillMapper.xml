@@ -34,8 +34,8 @@
         w.pk_id AS pkId,
         w.user_id as userId,
         w.complete_at AS completeAt,
-        w.create_time AS createTime
-        w.update_time AS updateTime
+        w.create_time AS createTime,
+        w.update_time AS updateTime,
         w.waybill_status AS waybillStatus,
         w.waybill_local AS waybillLocal,
         w.longitude,
@@ -51,7 +51,7 @@
         from t_waybill w
         left join t_user u on u.pk_id=w.user_id
         <where>
-            w.status <![CDATA[ <> ]]> 'DELETE'
+            w.waybill_status <![CDATA[ <> ]]> 'DELETE'
             <if test="userId!=null and userId!=''">
                 and w.user_id = #{userId}
             </if>
@@ -76,8 +76,8 @@
         w.pk_id AS pkId,
         w.user_id as userId,
         w.complete_at AS completeAt,
-        w.create_time AS createTime
-        w.update_time AS updateTime
+        w.create_time AS createTime,
+        w.update_time AS updateTime,
         w.waybill_status AS waybillStatus,
         w.waybill_local AS waybillLocal,
         w.longitude,
@@ -93,7 +93,7 @@
         from t_waybill w
         left join t_user u on u.pk_id=w.user_id
         <where>
-            w.status <![CDATA[ <> ]]> 'DELETE'
+            w.waybill_status <![CDATA[ <> ]]> 'DELETE'
             <if test="userId!=null and userId!=''">
                 and w.user_id = #{userId}
             </if>

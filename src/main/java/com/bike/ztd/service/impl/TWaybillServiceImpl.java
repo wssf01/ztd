@@ -185,7 +185,7 @@ public class TWaybillServiceImpl extends ServiceImpl<TWaybillMapper, TWaybill> i
             //运单信息补充
             WaybillListVO vo = new WaybillListVO();
             BeanUtils.copyProperties(waybill, vo);
-            vo.setLocal(waybill.getCity());
+            vo.setWaybillLocal(waybill.getCity());
             //用户信息补充
             vo.setUserPhone(userMap.get(waybill.getUserId()) == null ? "" : userMap.get(waybill.getUserId()));
             //运单车辆信息补充
@@ -263,7 +263,7 @@ public class TWaybillServiceImpl extends ServiceImpl<TWaybillMapper, TWaybill> i
                 CarInfoVO carInfoVO = new CarInfoVO();
                 carInfoVO.setCarNumbers(Arrays.asList(waybillCar.getCarNumber().split(",")));
                 if (WaybillInfoEnum.COLLECT.equals(waybillCar.getWaybillType())) {
-                    carInfoVO.setType(WaybillInfoEnum.COLLECT);
+                    carInfoVO.setWaybillType(WaybillInfoEnum.COLLECT);
                     if (CarTypeEnum.ELECTRIC.equals(waybillCar.getCarType())) {
                         collectElectric = getCarNumbers(waybillCar).size();
                         carInfoVO.setCarType(CarTypeEnum.ELECTRIC);
@@ -274,7 +274,7 @@ public class TWaybillServiceImpl extends ServiceImpl<TWaybillMapper, TWaybill> i
                     }
                 }
                 if (WaybillInfoEnum.DISBOARD.equals(waybillCar.getWaybillType())) {
-                    carInfoVO.setType(WaybillInfoEnum.DISBOARD);
+                    carInfoVO.setWaybillType(WaybillInfoEnum.DISBOARD);
                     if (CarTypeEnum.ELECTRIC.equals(waybillCar.getCarType())) {
                         disboardElectric = getCarNumbers(waybillCar).size();
                         carInfoVO.setCarType(CarTypeEnum.ELECTRIC);
@@ -348,8 +348,8 @@ public class TWaybillServiceImpl extends ServiceImpl<TWaybillMapper, TWaybill> i
         List<WaybillExportDTO> waybills = Lists.newArrayList();
         resultList.forEach(vo -> {
             WaybillExportDTO dto = new WaybillExportDTO();
-            dto.setCity(vo.getLocal());
-            dto.setCreatedAt(DateUtils.getDate(vo.getCreatedAt(), TIMESTAMP_FORMAT));
+            dto.setCity(vo.getWaybillLocal());
+            dto.setCreatedAt(DateUtils.getDate(vo.getCreateTime(), TIMESTAMP_FORMAT));
             dto.setNumberCollect(vo.getNumberCollect());
             dto.setNumberDisboard(vo.getNumberDisboard());
             dto.setUserPhone(vo.getUserPhone());
@@ -366,11 +366,11 @@ public class TWaybillServiceImpl extends ServiceImpl<TWaybillMapper, TWaybill> i
             List<PhotoInfoVO> list = vo.getPhotoInfoList();
             if (CollectionUtils.isNotEmpty(list)) {
                 list.forEach(info -> {
-                    if (WaybillInfoEnum.COLLECT.equals(info.getType())) {
-                        local.append(info.getLocal()).append(";\r\n");
+                    if (WaybillInfoEnum.COLLECT.equals(info.getWaybillType())) {
+                        local.append(info.getWaybillLocal()).append(";\r\n");
                         situation.append("{\"lat\":").append(info.getLatitude()).append(",\"lng\":").append(info.getLongitude()).append("}\r\n");
-                    } else if (WaybillInfoEnum.DISBOARD.equals(info.getType())) {
-                        outLocal.append(info.getLocal()).append(";\r\n");
+                    } else if (WaybillInfoEnum.DISBOARD.equals(info.getWaybillType())) {
+                        outLocal.append(info.getWaybillLocal()).append(";\r\n");
                         outSituation.append("{\"lat\":").append(info.getLatitude()).append(",\"lng\":").append(info.getLongitude()).append("}\r\n");
                     }
                 });

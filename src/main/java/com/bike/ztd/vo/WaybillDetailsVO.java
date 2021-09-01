@@ -20,11 +20,11 @@ public class WaybillDetailsVO {
     @ApiModelProperty("完成时间")
     private Date completeAt;
     @ApiModelProperty("创建时间")
-    private Date createdAt;
+    private Date createTime;
     @ApiModelProperty("运单状态")
-    private WaybillEnum status;
+    private WaybillEnum waybillStatus;
     @ApiModelProperty("地点")
-    private String local;
+    private String waybillLocal;
     @ApiModelProperty("经度")
     private BigDecimal longitude;
     @ApiModelProperty("纬度")

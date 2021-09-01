@@ -12,7 +12,7 @@ public class MyWaybillListVO {
     @ApiModelProperty("运单id")
     private String id;
     @ApiModelProperty("运单创建时间")
-    private Date createdAt;
+    private Date createTime;
     @ApiModelProperty("收车总数")
     private int numberCollect;
 }

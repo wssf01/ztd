@@ -16,5 +16,5 @@ public class CarInfoVO {
     @ApiModelProperty("车辆类型")
     private CarTypeEnum carType;
     @ApiModelProperty("收车/卸车")
-    private WaybillInfoEnum type;
+    private WaybillInfoEnum waybillType;
 }

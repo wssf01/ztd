@@ -99,12 +99,12 @@ public class TWaybillController {
     })
     public ResponseEntity list(@RequestParam(value = "userId", required = false) String userId,
                                @RequestParam(value = "userPhone", required = false) String userPhone,
-                               @RequestParam(value = "local", required = false) String local,
+                               @RequestParam(value = "waybillLocal", required = false) String waybillLocal,
                                @RequestParam(value = "current", defaultValue = "1") int current,
                                @RequestParam(value = "size", defaultValue = "10") int size,
                                @RequestParam(value = "startAt", required = false) Long startAt,
                                @RequestParam(value = "endAt", required = false) Long endAt) {
-        return ResponseEntity.success(waybillService.list(userId, userPhone, local, current, size, startAt, endAt));
+        return ResponseEntity.success(waybillService.list(userId, userPhone, waybillLocal, current, size, startAt, endAt));
     }
 
     @GetMapping("/details")
