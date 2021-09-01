@@ -43,7 +43,7 @@ import static com.bike.ztd.util.DateUtils.DATE_FORMAT3;
  * @author zyp
  * @since 2021-08-31
  */
-@Controller
+@RestController
 @RequestMapping("/tUser")
 public class TUserController {
 
